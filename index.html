@@ -688,7 +688,7 @@ h2{
 
 </style></head>
 <body>
-<audio id="music" loop preload="auto" src="music.mp3"></audio>
+<audio id="music" loop preload="auto" src="https://sevenx0007.github.io/wedding-alim-aisah/music.mp3"></audio>
 <div class="cover" id="cover">
  <div class="corner tl"></div><div class="corner br"></div>
  <div class="cover-inner">
@@ -870,7 +870,7 @@ window.openInvitation=async function(){
  toggle.classList.add('show');
  startPetals();
  document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
- try{await music.play();playing=true;setButtonLabel(toggle,'Musik: ON')}
+ try{music.muted=false;music.volume=1;await music.play();playing=true;setButtonLabel(toggle,'Musik: ON')}
  catch(e){playing=false;setButtonLabel(toggle,'Aktifkan Musik')}
 };
 document.getElementById('openBtn').addEventListener('click',window.openInvitation);
@@ -880,7 +880,7 @@ toggle.addEventListener('click',async()=>{
   setButtonLabel(toggle,'Musik: OFF');
  }else{
   try{
-   await music.play(); playing=true;
+   music.muted=false;music.volume=1;await music.play(); playing=true;
    setButtonLabel(toggle,'Musik: ON');
   }catch(e){
    playing=false;
