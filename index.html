@@ -871,7 +871,11 @@ window.openInvitation=async function(){
  startPetals();
  document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
  try{music.muted=false;music.volume=1;await music.play();playing=true;setButtonLabel(toggle,'Musik: ON')}
- catch(e){playing=false;setButtonLabel(toggle,'Aktifkan Musik')}
+ catch(e){
+ console.error('[MUSIC ERROR]',e.name,e.message,music.error);
+ playing=false;
+ setButtonLabel(toggle,'Error: '+e.name);
+}
 };
 document.getElementById('openBtn').addEventListener('click',window.openInvitation);
 toggle.addEventListener('click',async()=>{
@@ -883,8 +887,9 @@ toggle.addEventListener('click',async()=>{
    music.muted=false;music.volume=1;await music.play(); playing=true;
    setButtonLabel(toggle,'Musik: ON');
   }catch(e){
+   console.error('[MUSIC ERROR]',e.name,e.message,music.error);
    playing=false;
-   setButtonLabel(toggle,'Musik tidak tersedia');
+   setButtonLabel(toggle,'Error: '+e.name);
   }
  }
 });
